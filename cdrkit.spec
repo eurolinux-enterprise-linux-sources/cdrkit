@@ -1,7 +1,7 @@
 Summary: A collection of CD/DVD utilities
 Name: cdrkit
 Version: 1.1.9
-Release: 11%{?dist}
+Release: 12%{?dist}
 License: GPLv2
 Group: Applications/System
 URL: http://cdrkit.org/
@@ -14,6 +14,7 @@ Patch4: cdrkit-1.1.9-no_mp3.patch
 Patch5: cdrkit-1.1.9-buffer_overflow.patch
 #Patch6: cdrkit-1.1.9-rr_joliet.patch
 Patch7: cdrkit-1.1.9-root_option.patch
+Patch8: cdrkit-1.1.9-graftpoints.patch
 
 BuildRequires: cmake libcap-devel zlib-devel perl file-devel bzip2-devel
 
@@ -90,6 +91,7 @@ rates. Icedax can also be used as a CD player.
 %patch5 -p1 -b .buffer_overflow
 #%patch6 -p1 -b .rr_joliet
 %patch7 -p1 -b .root_option
+%patch8 -p1 -b .graftpoints
 
 find . -type f -print0 | xargs -0 perl -pi -e 's#/usr/local/bin/perl#/usr/bin/perl#g'
 find doc -type f -print0 | xargs -0 chmod a-x 
@@ -236,6 +238,10 @@ fi
 %{_mandir}/man1/dirsplit.*
 
 %changelog
+* Mon Mar 05 2012 Honza Horak <hhorak@redhat.com> - 1.1.9-12
+- Use memmove instead of srtcpy while moving overlapping memory
+  Resolves: #797990
+
 * Mon Jun 21 2010 Roman Rakus <rrakus@redhat.com> - 1.1.9-11
 - Added missing manpage for netscsid (symlink to wodim manpage)
   Resolves: #605140
