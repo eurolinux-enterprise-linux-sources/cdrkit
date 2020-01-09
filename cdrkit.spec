@@ -1,7 +1,7 @@
 Summary: A collection of CD/DVD utilities
 Name: cdrkit
 Version: 1.1.11
-Release: 23%{?dist}
+Release: 25%{?dist}
 License: GPLv2
 Group: Applications/System
 URL: http://cdrkit.org/
@@ -25,6 +25,8 @@ Patch16: cdrkit-1.1.11-cmakewarn.patch
 Patch17: cdrkit-1.1.11-memset.patch
 Patch18: cdrkit-1.1.11-paranoiacdio.patch
 Patch19: cdrkit-1.1.11-ppc64le_elfheader.patch
+Patch20: cdrkit-1.1.11-kernel-release.patch
+Patch21: cdrkit-1.1.11-device-name.patch
 
 BuildRequires: cmake libcap-devel zlib-devel perl file-devel bzip2-devel
 
@@ -136,6 +138,8 @@ SCSI devices.
 %patch17 -p1 -b .edcspeed
 %patch18 -p1 -b .paranoiacdio
 %patch19 -p1 -b .elfheader
+%patch20 -p1 -b .kernel
+%patch21 -p1 -b .device_name
 
 # we do not want bundled paranoia library
 rm -rf libparanoia
@@ -300,6 +304,16 @@ fi
 %{_includedir}/usal
 
 %changelog
+* Tue May 15 2018 Jakub Martisko <jamartis@redhat.com> - 1.1.11-25
+- add support for device names of the form /dev/srN
+- fix provided by Frantisek Kluknavsky
+- resolves:rhbz#1058446
+
+* Thu May 10 2018 Jakub Martisko <jamartis@redhat.com> - 1.1.11-24
+- fix libusal kernel version check
+- fix provided by Renaud Métrich
+- resolves:rhbz#1524845
+
 * Mon Sep 22 2014 Frantisek Kluknavsky <fkluknav@redhat.com> - 1.1.11-23
 - removed conflicting #define to fix FTBFS on ppc64le
 - resolves:rhbz#1144072

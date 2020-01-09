@@ -1,0 +1,29 @@
+diff -up wrk/libusal/scsi-linux-sg.c.wrk wrk/libusal/scsi-linux-sg.c
+--- wrk/libusal/scsi-linux-sg.c.wrk	2015-05-31 22:21:03.376694659 +0200
++++ wrk/libusal/scsi-linux-sg.c	2015-05-31 22:22:47.183667927 +0200
+@@ -509,7 +509,8 @@ usalo_open(SCSI *usalp, char *device)
+ 		/* scan and maybe keep one open, sg_setup decides */
+ #define HDX 0
+ #define SCD 1
+-#define SG 2
++#define SCD2 2
++#define SG 3
+ 		int h;
+ /*
+ retry_scan_open:
+@@ -533,6 +534,15 @@ retry_scan_open:
+ 						first=0;
+ 						last=255;
+ 						break;
++					}
++				case(SCD2):
++					{
++						if(!check_linux_26())
++							continue;
++						pattern="/dev/sr%d";
++						first=0;
++						last=255;
++						break;
+ 					}
+ 				case(SG):
+ 					{
