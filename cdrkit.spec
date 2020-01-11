@@ -1,7 +1,7 @@
 Summary: A collection of CD/DVD utilities
 Name: cdrkit
 Version: 1.1.11
-Release: 20%{?dist}
+Release: 22%{?dist}
 License: GPLv2
 Group: Applications/System
 URL: http://cdrkit.org/
@@ -298,6 +298,12 @@ fi
 %{_includedir}/usal
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.1.11-22
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.1.11-21
+- Mass rebuild 2013-12-27
+
 * Tue Jul 23 2013 Frantisek Kluknavsky <fkluknav@redhat.com> - 1.1.11-20
 - do not include empty fedora/* directories in debuginfo package
 
